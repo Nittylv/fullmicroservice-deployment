@@ -19,8 +19,7 @@ pipeline {
             steps {
                 // Build the Docker image using the Dockerfile in your repository
                 script {
-                    def buildId = env.BUILD_ID
-                    dockerImage = docker.build("my-ms-app:${env.BUILD_ID}")
+                    app = docker.build("my-ms-app")
                 }
             }
         }
