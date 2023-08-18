@@ -1,10 +1,10 @@
 pipeline {
     agent any
     
-     environment {
-        ECR_REPO = "your-ecr-repo"
+    //environment {
+    //    ECR_REPO = "your-ecr-repo"
 
-     }
+   }
 
     stages {
         stage('Checkout') {
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sh 'docker build -t ms-app:1.0 .'
             }
-        }
+   }
 
 
 
