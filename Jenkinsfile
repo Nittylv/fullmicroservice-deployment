@@ -1,21 +1,29 @@
 pipeline {
     agent any
 
+    environment {
+        AWS_DEFAULT_REGION = 'us-east-1' // Replace with your desired AWS region
+        BUILD_ID = 
+        
+    }
+
     stages {
-        stage('Build') {
-            steps {  
-                echo 'building the app'
+        stage('Checkout') {
+            steps {
+                // Checkout your code from version control
+                checkout scm
             }
         }
-        stage('Test') {
+
+        stage('Build Docker Image') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                // Build the Docker image using the Dockerfile in your repository
+                script {
+                    def buildId = env.BUILD_ID
+                    dockerImage = docker.build("my-ms-app:${env.BUILD_ID}")
+                }
             }
         }
     }
 }
+       
