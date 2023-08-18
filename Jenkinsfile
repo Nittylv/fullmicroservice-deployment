@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         AWS_DEFAULT_REGION = 'us-east-1' // Replace with your desired AWS region
-        BUILD_ID = 
+
         
     }
 
