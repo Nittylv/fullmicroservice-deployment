@@ -13,14 +13,14 @@ pipeline {
             }
         }         
    } 
-         stage('Build') {
+        stage('Build') {
             steps {
                 sh 'npm install'
                 sh 'npm run build'
             }
    }
 
-         stage('Build Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 sh 'docker build -t ms-app:1.0 .'
             }
