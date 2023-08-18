@@ -1,31 +1,37 @@
 pipeline {
     agent any
-    
-    //environment {
-    //    ECR_REPO = "your-ecr-repo"
-
-   //}
-
     stages {
+
+       stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }         
-   } 
 
-        stage('Build Docker Image') {
+
+        stage('Build') {
             steps {
                 sh 'docker build -t ms-app:1.0 .'
+                echo 'buidling docker image'
             }
-   }
+        }
 
+        //stage('Test') {
+        //    steps {
+                // Test steps go here
+        //    }
+       // }
+       // stage('Deploy') {
+        //    steps {
+                // Deployment steps go here
+        //    }
+       // }
 
+       } 
+
+     }
 
 }
-
-
-
-
 
   
