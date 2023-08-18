@@ -1,37 +1,22 @@
 pipeline {
     agent any
+
     stages {
-
-       stages {
-          stage('Checkout') {
+        stage('Build') {
             steps {
-                checkout scm
-            }
-        }         
-
-
-          stage('Build') {
-            steps {
+                echo 'Building docker image..'
                 sh 'docker build -t ms-app:1.0 .'
-                echo 'buidling docker image'
             }
         }
-
-        //stage('Test') {
-        //    steps {
-                // Test steps go here
-        //    }
-       // }
-       // stage('Deploy') {
-        //    steps {
-                // Deployment steps go here
-        //    }
-       // }
-
-       } 
-
-     }
-
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }
-
-  
