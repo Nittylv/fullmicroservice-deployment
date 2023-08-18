@@ -3,14 +3,14 @@ pipeline {
     stages {
 
        stages {
-        stage('Checkout') {
+          stage('Checkout') {
             steps {
                 checkout scm
             }
         }         
 
 
-        stage('Build') {
+          stage('Build') {
             steps {
                 sh 'docker build -t ms-app:1.0 .'
                 echo 'buidling docker image'
