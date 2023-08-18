@@ -4,7 +4,7 @@ pipeline {
     //environment {
     //    ECR_REPO = "your-ecr-repo"
 
-   }
+   //}
 
     stages {
         stage('Checkout') {
@@ -28,10 +28,10 @@ pipeline {
 
 
 
+}
 
 
 
 
 
-
-}    
+  
