@@ -15,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
                 // Build the Docker image using the Dockerfile in your repository
                 script {
