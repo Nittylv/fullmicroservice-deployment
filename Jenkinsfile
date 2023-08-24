@@ -10,7 +10,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from Git repository
-                checkout scm "https://github.com/Nittylv/fullmicroservice-deployment.git"
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/Nittylv/fullmicroservice-deployment.git']]])
+
             }
         }
 
