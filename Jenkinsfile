@@ -18,9 +18,6 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 // Run unit tests using Maven
-                sh "sudo apt update -y"
-                sh "apt install maven -y"
-                sh "mvn -version"
                 sh "mvn test"
             }
         }
