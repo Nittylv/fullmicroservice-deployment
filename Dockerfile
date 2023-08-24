@@ -1,20 +1,14 @@
-# Use the official Node.js image as the base image
-FROM node:14
+# Use the official OpenJDK image as the base image
+FROM openjdk:8-jdk-alpine
 
-# Set the working directory in the container
-RUN mkdir -p /app
+# Set the working directory inside the container
 WORKDIR /app
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json /app/
 
-# Install dependencies
-RUN npm install
+# Copy the Java source code into the container
+COPY HelloWorld.java .
 
-# Copy the rest of the application code
-COPY . /app/
+# Compile the Java code
+RUN javac HelloWorld.java
 
-# Expose the port your app runs on
-EXPOSE 3000
-
-# Start your Node.js application
-CMD ["node", "run", "Start"]
+# Run the compiled Java program when the container starts
+CMD ["java", "HelloWorld"]
