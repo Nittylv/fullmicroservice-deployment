@@ -87,3 +87,6 @@ pipeline {
         }
     }
 }
+
+
+mvn archetype:generate -DgroupId=bennyid -DartifactId=bennyartifact -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false

@@ -19,6 +19,22 @@ pipeline {
             }
         }
 
+        stage('Unit Tests') {
+            steps {
+                // Run unit tests using Maven
+                sh "mvn test"
+            }
+        }
+
+        stage('Integration Tests') {
+            steps {
+                // Run integration tests using Maven or your preferred testing framework
+                sh "mvn integration-test"
+            }
+        }
+
+
+
         stage('Build Docker Image') {
             steps {
                 script {
