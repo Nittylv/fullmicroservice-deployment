@@ -25,14 +25,14 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 // Run unit tests using Maven
-                sh "mavern test"
+                sh "maven test"
             }
         }
 
         stage('Integration Tests') {
             steps {
                 // Run integration tests using Maven or your preferred testing framework
-                sh "mvn integration-test"
+                sh "maven integration-test"
             }
         }
 
