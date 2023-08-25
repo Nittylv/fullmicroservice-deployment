@@ -4,7 +4,7 @@ pipeline {
 
     tools {
         // Use the name you provided for Maven installation
-        maven 'Apache Maven 3.6.3'
+        maven 'Maven'
     }
 
 
