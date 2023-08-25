@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+
+    tools {
+        // Use the name you provided for Maven installation
+        maven 'Maven'
+    }
+
+
     environment {
         DOCKER_IMAGE = "hello-world-java"
         ECR_REPO = "your-ecr-repo"
@@ -11,17 +18,7 @@ pipeline {
             steps {
                 // Checkout the code from Git repository
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/Nittylv/fullmicroservice-deployment.git']]])
-            }
-        }
 
-        stage('Install Maven') {
-            steps {
-                // Install Maven
-                sh "wget -qO- https://apache.osuosl.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz | tar xz"
-                sh "mv apache-maven-3.8.4 /usr/local/apache-maven"
-                sh "echo 'export PATH=/usr/local/apache-maven/bin:$PATH' >> ~/.bashrc"
-                sh "source ~/.bashrc"
-                sh "mvn --version"
             }
         }
 
@@ -35,7 +32,7 @@ pipeline {
         stage('Integration Tests') {
             steps {
                 // Run integration tests using Maven or your preferred testing framework
-                sh "mvn integration-test"
+                sh "maven integration-test"
             }
         }
 
@@ -45,15 +42,6 @@ pipeline {
                     // Build the Docker image
                     sh "docker build -t $DOCKER_IMAGE ."
                 }
-            }
-        }
-
-        stage('Install Trivy') {
-            steps {
-                // Install Trivy
-                sh "wget https://github.com/aquasecurity/trivy/releases/download/v0.20.0/trivy_0.20.0_Linux-64bit.deb"
-                sh "sudo dpkg -i trivy_0.20.0_Linux-64bit.deb"
-                sh "trivy --version"
             }
         }
 
