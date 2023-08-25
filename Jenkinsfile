@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+
+    tools {
+        // Use the name you provided for Maven installation
+        maven 'Apache Maven 3.6.3'
+    }
+
+
     environment {
         DOCKER_IMAGE = "hello-world-java"
         ECR_REPO = "your-ecr-repo"
@@ -18,7 +25,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 // Run unit tests using Maven
-                sh "mvn test"
+                sh "mavern test"
             }
         }
 
