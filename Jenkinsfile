@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+     tools {
+        // Use the name you provided for Maven installation
+        maven 'benny-mvn'
+    }
+
     environment {
         DOCKER_IMAGE = "hello-world-java"
         ECR_REPO = "your-ecr-repo"
@@ -11,17 +16,6 @@ pipeline {
             steps {
                 // Checkout the code from Git repository
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/Nittylv/fullmicroservice-deployment.git']]])
-            }
-        }
-
-        stage('Install Maven') {
-            steps {
-                // Install Maven
-                sh "wget -qO- https://apache.osuosl.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz | tar xz"
-                sh "mv apache-maven-3.8.4 /usr/local/apache-maven"
-                sh "echo 'export PATH=/usr/local/apache-maven/bin:$PATH' >> ~/.bashrc"
-                sh "source ~/.bashrc"
-                sh "mvn --version"
             }
         }
 
