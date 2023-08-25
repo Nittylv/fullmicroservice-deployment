@@ -21,7 +21,6 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                dir('/var/jenkins_home/workspace/ms-pipeline') {
                 // Run unit tests using Maven
                 sh "mvn test"
             }
