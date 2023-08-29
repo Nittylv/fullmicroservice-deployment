@@ -38,7 +38,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def dockerPath = tool name: 'benny-docker', type: 'Docker'
+                    def dockerPath = '/usr/bin'
                     // Build the Docker image
                     sh "${dockerPath}/docker build -t $DOCKER_IMAGE ."
                 }
