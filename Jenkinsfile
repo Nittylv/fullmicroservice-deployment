@@ -10,6 +10,7 @@ pipeline {
     }
 
     environment {
+        PATH = "/usr/bin:$PATH"
         DOCKER_IMAGE = "hello-world-java"
         ECR_REPO = "your-ecr-repo"
     }
