@@ -38,7 +38,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def dockerPath = tool name: 'benny-docker' // Replace 'ToolType' with the actual tool type used in your configuration
+                    def dockerPath = tool name: 'benny-docker', type: 'Docker' // Replace 'ToolType' with the actual tool type used in your configuration
                     // Build the Docker image
                     sh "${dockerPath}/docker build -t $DOCKER_IMAGE ."
                 }
