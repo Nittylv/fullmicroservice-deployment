@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+
+
+
      tools {
         // Use the name you provided for Maven installation
         maven 'benny-mvn'
@@ -30,6 +33,13 @@ pipeline {
             steps {
                 // Run integration tests using Maven or your preferred testing framework
                 sh "mvn integration-test"
+            }
+        }
+
+
+        stage('Print Environment') {
+            steps {
+                sh 'echo "PATH: $PATH"'
             }
         }
 
