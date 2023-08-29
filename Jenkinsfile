@@ -45,6 +45,16 @@ pipeline {
 
 
 
+         stage('Debug') {
+            steps {
+                sh 'echo "Running in: $(pwd)"'
+                sh 'echo "User: $(whoami)"'
+                sh 'echo "PATH: $PATH"'
+                sh 'which docker'
+            }
+        }
+
+
         stage('Build Docker Image') {
             steps {
                 script {
