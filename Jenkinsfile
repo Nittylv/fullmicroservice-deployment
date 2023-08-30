@@ -59,15 +59,7 @@ pipeline {
             }
         }
 
-        stage('Install Trivy') {
-            steps {
-                // Install Trivy
-                sh "wget https://github.com/aquasecurity/trivy/releases/download/v0.20.0/trivy_0.20.0_Linux-64bit.deb"
-                sh "sudo dpkg -i trivy_0.20.0_Linux-64bit.deb"
-                sh "trivy --version"
-            }
-        }
-
+       
         stage('Scan Docker Image') {
             steps {
                 script {
