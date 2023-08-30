@@ -51,10 +51,10 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-
+               
                     // Build the Docker image
-                    def dockerImage = docker.build('my-docker-image', '--file Dockerfile .')
-            
+                    //def dockerImage = docker.build('my-docker-image', '--file Dockerfile .')
+                    sh 'docker build -t my-docker-image .'
                 }
             }
         }
