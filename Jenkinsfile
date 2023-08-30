@@ -10,8 +10,8 @@ pipeline {
     }
 
     environment {
-        PATH = "/usr/bin/docker:$PATH"
-        DOCKER_IMAGE = "hello-world-java"
+        //PATH = "/usr/bin/docker:$PATH"
+        //DOCKER_IMAGE = "hello-world-java"
         ECR_REPO = "your-ecr-repo"
     }
 
@@ -53,7 +53,7 @@ pipeline {
                 script {
 
                     // Build the Docker image
-                    def dockerImage = docker.build("$DOCKER_IMAGE",'--file Dockerfile .')
+                    def dockerImage = docker.build('my-docker-image', '--file Dockerfile .')
             
                 }
             }
