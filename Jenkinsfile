@@ -45,9 +45,6 @@ pipeline {
         }
 
 
-
-         
-
         stage('Build Docker Image') {
             steps {
                 script {
@@ -64,7 +61,7 @@ pipeline {
             steps {
                 script {
                     // Scan the Docker image using Trivy
-                    sh "trivy --severity HIGH,CRITICAL --no-progress $DOCKER_IMAGE"
+                    sh "trivy image $DOCKER_IMAGE"
                 }
             }
         }
