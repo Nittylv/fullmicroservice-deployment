@@ -61,7 +61,8 @@ pipeline {
                 script {
 
                     // Build the Docker image
-                    sh "docker build -t $DOCKER_IMAGE ."
+                    def dockerImage = docker.build("$DOCKER_IMAGE",'--file Dockerfile .')
+            
                 }
             }
         }
