@@ -1,0 +1,15 @@
+Error: creating EC2 Instance: InvalidGroup.NotFound: The security group 'security_docker' does not exist in VPC 'vpc-05237c076471f5e8e'
+        status code: 400, request id: c05b3a82-6a9b-44e9-b205-ac81ecd96074
+
+  on main.tf line 68, in resource "aws_instance" "docker_registry":
+  68: resource "aws_instance" "docker_registry" {
+
+Error: creating EC2 Instance: OptInRequired: In order to use this AWS Marketplace product you need to accept terms and subscribe. To do so please visit https://aws.amazon.com/marketplace/pp?sku=rs00dvt3sam0sfsxk2z6dd23
+        status code: 401, request id: e0133c85-1569-4872-a052-3264e1eb51e2
+
+  on main.tf line 69, in resource "aws_instance" "docker_registry":
+  69: resource "aws_instance" "docker_registry" {
+
+
+    soln: i went to aws and gave admin access to user to be able to create securoty group and ec2 as i had permission error before 
+    for this security group not existing error, aws wanted me to accept their terms and condition, it worked afterwards
