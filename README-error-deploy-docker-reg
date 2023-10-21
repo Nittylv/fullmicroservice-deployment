@@ -1,0 +1,51 @@
+install pre-requisite
+install awscli
+install kubectl, docker, and configure credentials, give permissions to user and eks permission
+install terraform, build infrastruecture(vpc, subnet, sg, ec2). 
+terraform init, terraform fmt, terraform plan
+ terraform apply --auto-approve
+
+
+ FOR Deployment
+a) install kubectl
+b)  create eks cluster = aws eks create-cluster --name docker-cluster --role-arn arn:aws:iam::306419718302:role/docker-registery-role --resources-vpc-config subnetIds=subnet-0b333e18ddd37f57c,subnet-0219b3b1949b353b0,securityGroupIds=sg-0ec44c11e6598c729
+role-arn arn:aws:iam::306419718302:role/docker-registery-role=eks clusterrole
+
+c) Update your kubectl configuration to connect to the EKS cluster you created.
+aws eks update-kubeconfig --name docker-cluster OR 
+aws eks update-kubeconfig --name docker-cluster --region us-east-2
+
+ERROR
+ kubectl get nodes
+error: exec plugin: invalid apiVersion "client.authentication.k8s.io/v1alpha1"
+
+SOLUTION
+kubectl config view
+
+i tried to ensure my kubectl version is compatible with kubeconfig version by checking the kubectl version again using kubectl version and got the error below
+error: exec plugin: invalid apiVersion "client.authentication.k8s.io/v1alpha1"
+
+i also tried to update the kubectl version to the latest version and it still did not work
+
+*** The v1alpha1 version for client authentication is no longer recommended and is not supported in newer versions of kubectl
+
+You should consider updating your kubeconfig to use the v1 version. You can manually update the apiVersion in your kubeconfig file to client.authentication.k8s.io/v1. i cd to 
+cd /home/ubuntu/.kube
+cat config
+i used vim to open the file and edited the apiVersion to apiVersion: client.authentication.k8s.io/v1
+test if kubectl is working now using kubectl config current-context
+
+i did kubectl get nodes and got the error below
+error: interactiveMode must be specified for arn:aws:eks:us-east-2:306419718302:cluster/docker-cluster to use exec authentication plugin
+
+i updated my kubeconfig file again with region name and cluster name 
+
+i specified the interactive mode using 
+kubectl config get-contexts   to list contexts first 
+
+kubectl config set-context <your-cluster-context> --current --namespace=<your-namespace> --interactiveMode=true
+kubectl config set-context  arn:aws:eks:us-east-2:306419718302:cluster/docker-cluster--current --namespace=default--interactiveMode=true
+
+i did kubectl get nodes and still got exec pluggin error
+
+
